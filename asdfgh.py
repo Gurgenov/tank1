@@ -2,7 +2,7 @@ import pygame, os
 
 
 def load_image(image, color=None):
-    name = os.path.join('../../Desktop/data', image)
+    name = os.path.join('data', image)
     pic = pygame.image.load(name)
     if color is not None:
         if color == -1:
@@ -68,7 +68,7 @@ screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
 def draw():
     screen.fill((0, 0, 0))
     font = pygame.font.Font(None, 50)
-    text = font.render("Крассный Победил!", 1, (100, 255, 100))
+    text = font.render("Крассный Победил!", 1, (255, 0, 0))
     text_x = width // 2 - text.get_width() // 2
     text_y = height // 2 - text.get_height() // 2
     text_w = text.get_width()
@@ -81,7 +81,7 @@ def draw():
 def draw1():
     screen.fill((0, 0, 0))
     font = pygame.font.Font(None, 50)
-    text = font.render("Крассный Победил!", 1, (100, 255, 100))
+    text = font.render("Синий Победил!", 1, (0, 0, 255))
     text_x = width // 2 - text.get_width() // 2
     text_y = height // 2 - text.get_height() // 2
     text_w = text.get_width()
@@ -239,7 +239,7 @@ while running:
                 if hits:
                     draw()
                 else:
-                    shell.rect.y -= 0.8
+                    shell.rect.y -= 1
                     im_shell = load_image('shell_up.png')
                     screen.fill(0)
                     screen.blit(im_shell, (shell.rect.x, shell.rect.y))
@@ -260,7 +260,7 @@ while running:
                 if hits:
                     draw()
                 else:
-                    shell.rect.x -= 0.8
+                    shell.rect.x -= 1
                     im_shell = load_image('shell_left.png')
                     screen.fill(0)
                     screen.blit(im_shell, (shell.rect.x, shell.rect.y))
@@ -301,10 +301,10 @@ while running:
             if shell_2.rect.x < 1024:
                 hits = pygame.sprite.spritecollide(shell_2, sprites_tank, False)
                 if hits:
-                    draw()
+                    draw1()
                 else:
                     shell_2.rect.x += 1
-                    im_shell = load_image('shell_right.png')
+                    im_shell_2 = load_image('shell_right.png')
                     screen.fill(0)
                     screen.blit(im_shell, (shell.rect.x, shell.rect.y))
                     screen.blit(im_tank, (tank.rect.x, tank.rect.y))
@@ -318,9 +318,68 @@ while running:
                 screen.blit(im_tank, (tank.rect.x, tank.rect.y))
                 screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
                 screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+        if geolocation2 == 'left':
+            if shell_2.rect.x > 0:
+                hits = pygame.sprite.spritecollide(shell_2, sprites_tank, False)
+                if hits:
+                    draw1()
+                else:
+                    shell_2.rect.x -= 1
+                    im_shell_2 = load_image('shell_left.png')
+                    screen.fill(0)
+                    screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                    screen.blit(im_tank, (tank.rect.x, tank.rect.y))
+                    screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
+                    screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+            else:
+                shell_2.rect.x = tank2.rect.x
+                shell_2.rect.y = tank2.rect.y + 20
+                im_shell_2 = load_image('shell_left.png')
+                screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                screen.blit(im_tank, (tank.rect.x, tank.rect.y))
+                screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
+                screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+        if geolocation2 == 'up':
+            if shell_2.rect.y > 0:
+                hits = pygame.sprite.spritecollide(shell_2, sprites_tank, False)
+                if hits:
+                    draw1()
+                else:
+                    shell_2.rect.y -= 1
+                    im_shell_2 = load_image('shell_up.png')
+                    screen.fill(0)
+                    screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                    screen.blit(im_tank, (tank.rect.x, tank.rect.y))
+                    screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
+                    screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+            else:
+                shell_2.rect.x = tank2.rect.x + 25
+                shell_2.rect.y = tank2.rect.y
+                im_shell_2 = load_image('shell.png')
+                screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                screen.blit(im_tank, (tank.rect.x, tank.rect.y))
+                screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
+                screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+        if geolocation2 == 'down':
+            if shell_2.rect.y < 720:
+                hits = pygame.sprite.spritecollide(shell_2, sprites_tank, False)
+                if hits:
+                    draw1()
 
-
-
+                else:
+                    shell_2.rect.y += 1
+                    im_shell_2 = load_image('shell_down.png')
+                    screen.fill(0)
+                    screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                    screen.blit(im_tank, (tank.rect.x, tank.rect.y))
+                    screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
+                    screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+            else:
+                shell_2.rect.x = tank2.rect.x + 20
+                shell_2.rect.y = tank2.rect.y
+                im_shell_2 = load_image('shell_down.png')
+                screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                screen.blit(im_tank, (tank.rect.x, tank.rect.y))
     pygame.display.flip()
 
 pygame.quit()
