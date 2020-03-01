@@ -17,6 +17,7 @@ sur = pygame.Surface([200, 300])
 sur.fill((255, 0, 0))
 running = True
 
+# direction
 geolocation = 'left'
 geolocation2 = 'right'
 
