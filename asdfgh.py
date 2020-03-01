@@ -310,6 +310,15 @@ while running:
                     screen.blit(im_tank, (tank.rect.x, tank.rect.y))
                     screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
                     screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+            else:
+                shell_2.rect.x = tank2.rect.x
+                shell_2.rect.y = tank2.rect.y + 20
+                im_shell_2 = load_image('shell_right.png')
+                screen.blit(im_shell, (shell.rect.x, shell.rect.y))
+                screen.blit(im_tank, (tank.rect.x, tank.rect.y))
+                screen.blit(im_shell_2, (shell_2.rect.x, shell_2.rect.y))
+                screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
+
 
 
     pygame.display.flip()
