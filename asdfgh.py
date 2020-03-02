@@ -69,7 +69,7 @@ screen.blit(im_tank2, (tank2.rect.x, tank2.rect.y))
 def draw():
     screen.fill((0, 0, 0))
     font = pygame.font.Font(None, 50)
-    text = font.render("Ничья!", 1, (255, 0, 0))
+    text = font.render("Ничья!", 1, (255, 155, 100))
     text_x = width // 2 - text.get_width() // 2
     text_y = height // 2 - text.get_height() // 2
     text_w = text.get_width()
