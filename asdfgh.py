@@ -110,6 +110,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     keys = pygame.key.get_pressed()
+    # движение
     if keys[pygame.K_LEFT]:
         if tank.rect.x > 0:
             hits = pygame.sprite.spritecollide(tank, all_sprites, False)
